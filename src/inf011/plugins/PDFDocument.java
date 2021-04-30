@@ -28,13 +28,14 @@ public class PDFDocument implements IDocument {
 	public JFrame getEditor() {
 		try {
 			int page = 1;
-			
-			PDFTextStripper reader;
-			reader = new PDFTextStripper();
-			reader.setStartPage(page);
-			reader.setEndPage(page);
-			String pageText = reader.getText(this.document);
-			
+			String pageText = "";
+			if(this.document != null) {
+				PDFTextStripper reader;
+				reader = new PDFTextStripper();
+				reader.setStartPage(page);
+				reader.setEndPage(page);
+				pageText = reader.getText(this.document);
+			}
 			return new DocumentEditor(pageText);
 		} catch (IOException e) {
 			e.printStackTrace();			

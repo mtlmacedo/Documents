@@ -13,6 +13,7 @@ import inf011.service.PluginService;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -125,9 +126,10 @@ public class MainFrame extends JFrame {
 			String filePath = this.textField.getText();
 			String extension = this.fileService.getExtension(filePath);
 			IDocument doc = pluginService.getDocumentByExtension(extension);
-//			String content = 
+			doc.open(new File(filePath));
+			JFrame frame = doc.getEditor();
 //			JFrame frame = new DocumentEditor(content);
-//			frame.setVisible(true); 				
+			frame.setVisible(true); 				
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error : " + e.getMessage());
 		}
